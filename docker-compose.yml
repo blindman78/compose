@@ -1,30 +1,31 @@
 version: '3'
 services:
+  php7:
+    image: blind_php
+    container_name: blind_php
+    expose:
+      - 9000:9000
+    volumes_from:
+      - app
+    links:
+      - mysql
+
   apache:
     image: blind_apache
     container_name: blind_apache
-    links: 
-      - mysql:container_mysql
-      - app:container_app
-      - myadmin:container_myadmin
-      - php7:container_php7
-      - symfony:container_symfony
+    links:
+      - php7
     ports:
       - 80:80
-    volumes:
-      - /var/www/html
+    volumes_from:
+      - app
 
   app:
     image: blind_app
     container_name: blind_app
-    links:
-      - mysql:container_mysql
-      - app:container_app
-      - myadmin:container_myadmin
-      - php7:container_php7
-      - symfony:container_symfony
     volumes:
       - /var/www/symfony
+    tty: true
 
   myadmin:
     image: blind_myadmin
@@ -43,13 +44,7 @@ services:
   mysql:
     image: blind_mysql
     container_name: blind_mysql
-    links:
-      - mysql:container_mysql
-      - app:container_app
-      - myadmin:container_myadmin
-      - php7:container_php7
-      - symfony:container_symfony
     ports:
-      - 8880:8880
+      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
