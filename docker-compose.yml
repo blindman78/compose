@@ -1,0 +1,55 @@
+version: '3'
+services:
+  apache:
+    image: blind_apache
+    container_name: blind_apache
+    links: 
+      - mysql:container_mysql
+      - app:container_app
+      - myadmin:container_myadmin
+      - php7:container_php7
+      - symfony:container_symfony
+    ports:
+      - 80:80
+    volumes:
+      - /var/www/html
+
+  app:
+    image: blind_app
+    container_name: blind_app
+    links:
+      - mysql:container_mysql
+      - app:container_app
+      - myadmin:container_myadmin
+      - php7:container_php7
+      - symfony:container_symfony
+    volumes:
+      - /var/www/symfony
+
+  myadmin:
+    image: blind_myadmin
+    container_name: blind_myadmin
+    links:
+      - mysql:container_mysql
+      - app:container_app
+      - myadmin:container_myadmin
+      - php7:container_php7
+      - symfony:container_symfony
+    ports:
+      - 88:88
+    volumes:
+      - /var/www/html
+
+  mysql:
+    image: blind_mysql
+    container_name: blind_mysql
+    links:
+      - mysql:container_mysql
+      - app:container_app
+      - myadmin:container_myadmin
+      - php7:container_php7
+      - symfony:container_symfony
+    ports:
+      - 8880:8880
+    environment:
+      MYSQL_ROOT_PASSWORD: root
