@@ -31,11 +31,7 @@ services:
     image: blind_myadmin
     container_name: blind_myadmin
     links:
-      - mysql:container_mysql
-      - app:container_app
-      - myadmin:container_myadmin
-      - php7:container_php7
-      - symfony:container_symfony
+      - mysql
     ports:
       - 88:88
     volumes:
