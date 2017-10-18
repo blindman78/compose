@@ -1,5 +1,5 @@
 FROM debian:jessie
 
-RUN sudo apt-get install phpmyadmin
+RUN apt-get update && apt-get install -y phpmyadmin
 
 Include /etc/phpmyadmin/apache.conf
