@@ -13,13 +13,5 @@ build:
 	docker build --file="docker/images/symfony/Dockerfile" --tag="$(NAME_SYMFONY):latest" docker/images/symfony/.
 	docker build --file="docker/images/app/Dockerfile" --tag="$(NAME_APP):latest" docker/images/app/.
 
-install:
-	chmod -Rf 777 docker/
-	chmod 644 docker/etc/mysql/my.cnf
-	docker-compose run php7 install
-	
-debug:
-	docker run -it --rm --entrypoint=/bin/bash $(NAME_PHP):master
-
 run:
 	docker-compose up

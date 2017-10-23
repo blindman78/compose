@@ -33,7 +33,7 @@ services:
     links:
       - mysql
     ports:
-      - 88:88
+      - 8080:8080
     volumes:
       - /var/www/html
 
