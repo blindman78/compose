@@ -1,8 +1,8 @@
 version: '3'
 services:
   php7:
-    image: blind_php
-    container_name: blind_php
+    image: blind_php7
+    container_name: blind_php7
     expose:
       - 9000:9000
     volumes_from:
@@ -11,8 +11,8 @@ services:
       - mysql
 
   apache:
-    image: blind_apache
-    container_name: blind_apache
+    image: blind_apache2
+    container_name: blind_apache2
     links:
       - php7
     ports:
