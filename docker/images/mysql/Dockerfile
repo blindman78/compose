@@ -8,4 +8,4 @@ RUN apt-get update && apt-get install wget
 
 RUN apt-get update && apt-get install -y mysql-server && apt-get install -y mysql-client && apt-get install -y php7-mysql
 
-RUN mysql --user=root --password=votrepasswd
+RUN mysql --user=root --password=passwd

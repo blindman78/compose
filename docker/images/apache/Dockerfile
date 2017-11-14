@@ -1,9 +1,7 @@
-FROM debian:jessie
-
-RUN apt-get update && apt-get install -y apache2
-RUN a2enmod proxy_fcgi
+FROM arm32v7/httpd
 
 ADD docker/images/apache/app.conf /etc/apache2/sites-available/
+RUN a2ensite app
 
 EXPOSE 80
 
