@@ -24,7 +24,7 @@ services:
     image: blind_symfony
     container_name: blind_symfony
     volumes:
-      - /home/pi/Symfony:/var/www/html
+      - /home/pi/Symfony:/var/www/html/web/Symfony
     tty: true
 
   mysql:

@@ -1,3 +1,3 @@
 FROM debian:jessie
 
-VOLUME /var/www/symfony
+VOLUME /var/www/web/symfony
