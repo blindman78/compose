@@ -1,5 +1,7 @@
-FROM arm32v7/php
+FROM php:7.0-apache
 
-WORKDIR /var/www/html
+RUN apt-get update
+
+WORKDIR /usr/local/apache2/htdocs/
 
 EXPOSE 9000

@@ -1,3 +1,5 @@
 FROM debian:jessie
 
-VOLUME /var/www/web/symfony
+RUN apt-get update
+
+VOLUME /usr/local/apache2/htdocs/

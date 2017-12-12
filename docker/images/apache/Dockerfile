@@ -1,5 +1,5 @@
-FROM arm32v7/httpd
+FROM httpd
+
+RUN apt-get update -y
 
 EXPOSE 80
-
-WORKDIR /var/www/html
