@@ -1,5 +1,5 @@
 FROM debian:jessie
 
-RUN apt-get update
+RUN apt-get update -y
 
-VOLUME /usr/local/apache2/htdocs/
+VOLUME /var/www/html/

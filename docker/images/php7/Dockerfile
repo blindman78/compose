@@ -1,7 +1,7 @@
 FROM php:7.0-apache
 
-RUN apt-get update
+RUN apt-get update -y
 
-WORKDIR /usr/local/apache2/htdocs/
+WORKDIR /var/www/html/
 
-EXPOSE 9000
+EXPOSE 80
