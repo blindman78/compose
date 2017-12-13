@@ -10,16 +10,6 @@ services:
     volumes_from:
       - app
 
-  apache:
-    image: blind_apache
-    container_name: blind_apache
-    links:
-      - php7
-    ports:
-      - 9000:9000
-    volumes_from:
-      - app
-
   app:
     image: blind_symfony
     container_name: blind_symfony
