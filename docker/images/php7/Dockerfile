@@ -1,6 +1,11 @@
-FROM php:7.0-apache
+FROM php:7.2-apache
 
-RUN apt-get update -y
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends git zip
+
+RUN curl --silent --show-error https://getcomposer.org/installer | php
+
+RUN mv composer.phar /usr/local/bin/composer
 
 WORKDIR /var/www/html/
 

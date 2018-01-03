@@ -23,6 +23,9 @@ services:
     volumes:
       - /home/pi/Data:/var/lib/mysql
     environment:
-            MYSQL_ROOT_PASSWORD: passroot
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: project
+      MYSQL_USER: project
+      MYSQL_PASSWORD: project
     ports:
       - 3306:3306
