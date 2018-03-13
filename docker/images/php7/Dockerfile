@@ -1,14 +1,28 @@
-FROM php:7.2-apache
+FROM arm32v7/php:7.2.3-apache-stretch
 
 ENV LOCALE fr_FR.UTF-8
 
 ENV TZ=Europe/Paris
 
 RUN docker-php-ext-install mysqli && \
-    docker-php-ext-enable mysqli
+    docker-php-ext-install pdo_mysql && \
+    docker-php-ext-enable mysqli && \
+    docker-php-ext-enable pdo_mysql
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends git zip unzip wget
+    apt-get install -y --no-install-recommends zip unzip git wget gnupg build-essential curl
+
+RUN apt-get update && \
+    curl -sL https://deb.nodesource.com/setup_9.x | bash - && \
+#    echo "deb http://ftp.de.debian.org/debian stretch main" | tee /etc/apt/sources.list.d/test.list && \
+    apt-get install -y nodejs
+
+RUN apt-get update && \
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    apt-get update && \
+    apt-get install yarn
+#    apt-get -o Dpkg::Options::="--force-overwrite" install -y yarn
 
 RUN curl --silent --show-error https://getcomposer.org/installer | php
 
@@ -29,6 +43,8 @@ RUN groupadd -f -g 1000 docker && \
 
 RUN chown -R docker:docker /home/docker
 
+RUN apt-get upgrade -y
+
 WORKDIR /var/www/html/
 
-EXPOSE 80 443
+EXPOSE 80
