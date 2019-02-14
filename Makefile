@@ -6,3 +6,6 @@ build:
 run:
 	docker-compose up -d
 
+stop:
+	docker stop blind_php7 blind_mysql blind_symfony
+
