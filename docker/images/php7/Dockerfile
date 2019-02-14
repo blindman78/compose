@@ -12,6 +12,8 @@ RUN docker-php-ext-install mysqli && \
 RUN apt-get update && \
     apt-get install -y --no-install-recommends zip unzip git wget gnupg build-essential curl
 
+RUN apt-get install python-certbot-apache -y
+
 RUN apt-get update && \
     curl -sL https://deb.nodesource.com/setup_9.x | bash - && \
 #    echo "deb http://ftp.de.debian.org/debian stretch main" | tee /etc/apt/sources.list.d/test.list && \
@@ -30,6 +32,7 @@ RUN mv composer.phar /usr/local/bin/composer
 
 # COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY 000-symfony.conf /etc/apache2/sites-available/000-symfony.conf
+#COPY 000-ssl.conf /etc/apache2/sites-available/000-ssl.conf
 
 RUN a2enmod rewrite && \
     a2enmod ssl
@@ -48,3 +51,4 @@ RUN apt-get upgrade -y
 WORKDIR /var/www/html/
 
 EXPOSE 80
+EXPOSE 443
