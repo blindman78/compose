@@ -11,21 +11,25 @@ services:
       - app
 
   app:
+    env_file:
+      - .env
     image: blind_symfony
     container_name: blind_symfony
     volumes:
-      - /home/pi/Symfony:/var/www/html/
+      - "${SYMFONY}:/var/www/html/"
     tty: true
 
   mysql:
+    env_file:
+      - .env
     image: blind_mysql
     container_name: blind_mysql
     volumes:
-      - /home/pi/Data:/var/lib/mysql
+      - "${DBHOST}:/var/lib/mysql"
     environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: project
-      MYSQL_USER: project
-      MYSQL_PASSWORD: project
+      MYSQL_ROOT_PASSWORD: "${PASSROOT}"
+      MYSQL_DATABASE: "${NAMEDB}"
+      MYSQL_USER: "${USERDB}"
+      MYSQL_PASSWORD: "${PASSDB}"
     ports:
       - 3306:3306
